@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ChatContainer from "./ChatContainer";
 import FriendList from "./FriendList";
-import UserProfile from "./UserProfile";
+import UserProfile from "./UserProfileSideBar";
 
 const Home = () => {
     const [selectedUser , setSelectedUser] = useState(false)
