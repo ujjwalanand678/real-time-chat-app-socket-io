@@ -7,7 +7,7 @@ const FriendList = ({ selectedUser, setSelectedUser }) => {
   return (
     <div
       className={`bg-[#8185B2]/10 h-full p-5 rounded-r-xl overflow-y-scroll text-white ${
-        selectedUser ? "max-md:hiddedn" : ""
+        selectedUser ? "max-md:hidden" : ""
       }`}
     >
       <div className="pb-5">
@@ -31,7 +31,7 @@ const FriendList = ({ selectedUser, setSelectedUser }) => {
             </div>
           </div>
         </div>
-        <div className="bg-[#282142] rounded-full flex item-center gap-2 px-4 py-3 mt-5">
+        <div className="bg-[#282142] rounded-full flex items-center gap-2 px-4 py-3 mt-5">
           <img src={assets.search_icon} alt="search" className="w-3" />
           <input
             type="text"
@@ -57,7 +57,7 @@ const FriendList = ({ selectedUser, setSelectedUser }) => {
               )}
             </div>
             {index > 2 && (
-              <p className="relative left-34 text-xs h-5 w-5 flex justify-center items-center rounded-full bg-violet-500/50 ">
+              <p className="absolute right-4 text-xs h-5 w-5 flex justify-center items-center rounded-full bg-violet-500/50 ">
                 {index}
               </p>
             )}

@@ -87,7 +87,7 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
           <input
             type="text"
             placeholder="Send a message"
-            className="flex-1 text-sm p-3 border-none rounded-lg outline-none  placeholder-gray-500"
+            className="flex-1 text-sm p-3 border-none rounded-lg outline-none text-gray-900 placeholder-gray-500"
           />
           <input type="file" id="image" accept="image/png, image/jpeg" hidden />
           <label htmlFor="image">
