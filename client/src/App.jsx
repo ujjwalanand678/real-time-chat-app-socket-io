@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-    <div className="bg-[url('./src/assets/dark.jpg')]  ">
+    <div className="bg-[radial-gradient(circle,rgba(55,10,140,1)_0%,rgba(0,0,0,1)_40%)]">
      <Home />
      </div>
     </>
