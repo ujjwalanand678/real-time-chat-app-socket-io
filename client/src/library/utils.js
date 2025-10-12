@@ -1,7 +1,6 @@
-import React from "react";
-
-const Utils = () => {
-  return <div>Utils</div>;
-};
-
-export default Utils;
+export function formatMessageTime(date) {
+    return new Date(date).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
