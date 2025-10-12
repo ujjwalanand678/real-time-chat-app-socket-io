@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-    <div className="bg-[url('./src/assets/dark.jpg')] h-screen w-screen bg-cover ">
+    <div className="bg-[url('./src/assets/dark.jpg')]  ">
      <Home />
      </div>
     </>
