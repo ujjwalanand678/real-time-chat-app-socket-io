@@ -1,0 +1,59 @@
+npm install bcryptjs cloudinary cors dotenv express jsonwebtoken mongoose socket.io
+
+express → runs your backend
+mongoose → stores your data
+bcryptjs & jsonwebtoken → handle authentication
+cors & dotenv → make it safe and configurable
+cloudinary → handles images
+socket.io → adds real-time magic
+
+1. bcryptjs
+
+🧂 Purpose: Hashing passwords.
+
+When users sign up, you should never store raw passwords in your database.
+bcryptjs converts them into unreadable hashes, so even if your database leaks, the passwords are still safe.
+
+2. cloudinary
+
+☁️ Purpose: Upload and store images, videos, etc.
+
+If users upload profile pictures or tour images, cloudinary hosts them for you and gives you fast, CDN-optimized URLs.
+
+3. cors
+
+🔒 Purpose: Allow your frontend (React) to talk to your backend (Express).
+
+By default, browsers block requests between different domains.
+cors opens a safe communication channel between, say,
+http://localhost:3000 (React) → http://localhost:5000 (Express).
+
+4. dotenv
+
+📁 Purpose: Keep secrets and environment variables private.
+
+You don’t want API keys or database passwords hard-coded.
+You create a .env file:
+5. express
+
+🚀 Purpose: Build your backend server and APIs.
+
+Express is the web framework that powers your routes, middleware, and request handling.
+
+6. jsonwebtoken
+
+🔑 Purpose: Authentication using tokens (JWT).
+
+When a user logs in, you create a JSON Web Token — a small digital passport — so the user can access protected routes.
+
+7. mongoose
+
+🧬 Purpose: Connect to and manage MongoDB.
+
+It provides a simple way to define database schemas and interact with data.
+
+8. socket.io
+
+⚡ Purpose: Real-time, bi-directional communication (like chats, notifications, or live updates).
+
+Unlike normal HTTP (request → response), Socket.IO keeps a live connection open.
