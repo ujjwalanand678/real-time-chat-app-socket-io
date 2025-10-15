@@ -31,7 +31,7 @@ export const userSignUp = async (req, res, next) => {
    await user.save();
    return res
       .status(200)
-      .json({ success: true, message: "User registered successfully" });
+      .json({ success: true, message: "User registered successfully" , userData : user});
    
   } catch (error) {
     return res.status(500).json({ success: false, message: "Server error" });
