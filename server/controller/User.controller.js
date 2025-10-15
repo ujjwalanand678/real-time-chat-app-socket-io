@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import User from "../model/User.model";
 import bcrypt from "bcryptjs"
+import { createJwtToken } from "../library/utils";
 
-
+//controller for user signup
 export const userSignUp = async (req, res, next) => {
   const { fullName, email, password, bio } = req.body;
   try {
@@ -38,3 +39,34 @@ export const userSignUp = async (req, res, next) => {
   }
 };
 
+//controller for user login
+
+export const userLogin = async (req,res,next) => {
+const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "User not registered" });
+    }
+    const comparePassword = await bcrypt.compare(
+      password,
+      user.password
+    ); // it will compare the plain text password with the hashed password and return true or false.
+    if (!comparePassword) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid password" });
+    }
+    const token = createJwtToken(user)
+    const { password: hashedPassword, role, ...rest}= user._doc; 
+   
+    return res
+      .status(200)
+      .json({ success: true, message: "User logged in successfully" , token , role, data: rest});
+  } catch (error) {
+     console.error("Login Error:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
