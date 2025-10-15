@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors"
 import http from "http"
+import { connectDB } from "./database/database.js";
 
 //create express app using http server because socket io works with http server
 const app = express();
@@ -19,17 +20,8 @@ app.use("/api/status", (req, res) => res.send("API is running..."));
 const port = process.env.PORT || 3000;
 mongoose.set("strictQuery", false);
 
-const connectDB = async () => {
-  try {
-    mongoose.connect(process.env.MONGO_URI);
-    console.log(`Connected to MongoDB`);
-  } catch (error) {
-    console.log("error");
-  }
-};
 
-
-connectDB().then(()=>{
+await connectDB().then(()=>{
     server.listen(port, ()=>{
     console.log(`server is running at ${port}`)
 })
