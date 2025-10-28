@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import cors from "cors"
 import http from "http"
 import { connectDB } from "./database/database.js";
+import UserRouter from "./routes/User.routes.js"
 
 //create express app using http server because socket io works with http server
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json({limit: '5mb'}));
 app.use(cors())
 
 app.use("/api/status", (req, res) => res.send("API is running..."));
+app.use("/api/auth" , UserRouter)
 
 const port = process.env.PORT || 3000;
 mongoose.set("strictQuery", false);

@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import User from "../model/User.model";
 import bcrypt from "bcryptjs"
 import { createJwtToken } from "../library/utils";
+import cloudinary from "../library/cloudinary.js";
 
 //controller for user signup
 export const userSignUp = async (req, res, next) => {
@@ -40,7 +41,6 @@ export const userSignUp = async (req, res, next) => {
 };
 
 //controller for user login
-
 export const userLogin = async (req,res,next) => {
 const { email, password } = req.body;
   try {
@@ -70,3 +70,28 @@ const { email, password } = req.body;
     return res.status(500).json({ success: false, message: "Server error" });
   }
 };
+
+export const checkAuth = async (req, res)=>{
+  res.json(200).json({success:true , user : req.user})
+}
+ 
+//controller to update user profile details
+export const updateProfile = async (req,res ,next)=>{
+  try {
+  const { fullName, profilePic, bio } = req.body;
+  
+  const userId = req.user._id;
+  let updatedUser;
+  if(!profilePic){
+    updatedUser = await User.findByIdAndUpdate(userId , {bio ,fullName}, {new :true})
+  }else{
+    const upload = await cloudinary.uploader.upload(profilePic);
+    updatedUser = await User.findByIdAndUpdate(userId ,{profilePic:upload.secure_url , bio ,fullName}, {new : true})
+  }
+return res.status(200).json({success:true , message: "User updated successfully" , user: updatedUser})
+} catch (error) {
+  console.log(error.message)
+  console.error("Update Error:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+}
+}
